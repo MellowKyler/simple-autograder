@@ -19,15 +19,17 @@ for a in ansFile:
 	ans.append(a.rstrip())
 
 	
-for j in ans:
-	for i in key:
-		if i == j:
-			rev.append(j + "\n")
-			break
+for i in range(len(key)):
+	try:
+		f = ans[i]
+		g = key[i]
+		if f == g:
+			rev.append(f + "\n")
 		else:
-			rev.append("~ " + j + "\n")
-			break
-
+			rev.append("~ " + f + "\n")
+	except:
+		print("ERROR: Test attempt and answer key do not have the same number of entries.\nContinuing anyway.")
+	
 			
 writeFile = open(tempFile, "w")
 for b in rev:
@@ -50,40 +52,8 @@ outputFile.write("\nScore: " + str(correct) + "/" + str(len(key)) + " (" + strPe
 print("Score: " + str(correct) + "/" + str(len(key)) + " (" + strPercent + "%)")
 
 
-smolPercent = strPercent[:-3]
+smolPercent = strPercent[:2]
 oldName = testInput + "-" + attemptInput + "-graded.txt"
 newName = testInput + "-" + attemptInput + "-(" + smolPercent + "%).txt"
 os.rename(oldName, newName)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
